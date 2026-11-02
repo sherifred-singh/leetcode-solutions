@@ -1,0 +1,26 @@
+name: Sync LeetCode Submissions
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 8 * * *' # Runs automatically every day at 08:00 UTC (1:30 PM IST)
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Sync Accepted LeetCode Submissions
+        uses: joshcai/leetcode-sync@v1.7
+        with:
+          github-token: ${{ github.token }}
+          leetcode-csrf-token: ${{ secrets.LEETCODE_CSRF_TOKEN }}
+          leetcode-session: ${{ secrets.LEETCODE_SESSION }}
+          destination-folder: my-submissions
+          verbose: true
+          commit-header: '[LeetCode Sync]'

@@ -1,0 +1,17 @@
+# Environment variables & secrets
+.env
+*.local
+secrets/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# Log files
+*.log
